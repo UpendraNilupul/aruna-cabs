@@ -91,7 +91,6 @@ const S = {
     navLink: { color: "#94A3B8", textDecoration: "none", fontSize: 13, fontWeight: 600, cursor: "pointer", textTransform: "uppercase", letterSpacing: 1 },
     navLinkActive: { color: "#10B981", textDecoration: "none", fontSize: 13, fontWeight: 700, cursor: "pointer", textTransform: "uppercase", letterSpacing: 1 },
     navPhone: { display: "flex", alignItems: "center", gap: 8, color: "#F8FAFC", fontWeight: 600, fontSize: 15 },
-    navBookBtn: { background: "#10B981", color: "#020617", border: "none", borderRadius: 8, padding: "12px 24px", fontWeight: 700, fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "0.3s" },
 
     // Auth Buttons
     navLoginBtn: { background: "#10B981", color: "#020617", border: "none", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", textDecoration: "none" },
@@ -109,12 +108,6 @@ const S = {
     heroBtns: { display: "flex", gap: 16, justifyContent: "center" },
     heroBtnPrimary: { padding: "16px 32px", borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, border: "none", background: "#10B981", color: "#020617" },
     heroBtnOutline: { padding: "16px 32px", borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.05)", color: "#fff", backdropFilter: "blur(8px)" },
-
-    // Scroll Indicator
-    scrollIndicator: { position: "absolute", bottom: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, opacity: 0.7, zIndex: 10 },
-    scrollIcon: { width: 24, height: 40, border: "2px solid #94A3B8", borderRadius: 12, display: "flex", justifyContent: "center", paddingTop: 6 },
-    scrollDot: { width: 4, height: 8, background: "#10B981", borderRadius: 2, animation: "scrollDotAnim 2s infinite" },
-    scrollText: { color: "#94A3B8", fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1 },
 
     // GLOBAL SECTION STYLES
     section: { padding: "100px 60px", position: "relative" },
@@ -181,8 +174,6 @@ function useScrollReveal() {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // We assign ref.current to a variable inside the effect so React 
-        // can safely clean it up later without throwing an exhaustive-deps warning.
         const currentRef = ref.current;
 
         const observer = new IntersectionObserver(
@@ -287,23 +278,6 @@ function Hero() {
                     <button style={S.heroBtnOutline}>Explore Our Fleet</button>
                 </div>
             </div>
-
-            <div style={S.scrollIndicator}>
-                <div style={S.scrollIcon}>
-                    <div style={S.scrollDot} />
-                </div>
-                <span style={S.scrollText}>Scroll Down</span>
-            </div>
-
-            <style>
-                {`
-                @keyframes scrollDotAnim {
-                    0% { transform: translateY(0); opacity: 1; }
-                    50% { transform: translateY(12px); opacity: 0; }
-                    100% { transform: translateY(0); opacity: 0; }
-                }
-                `}
-            </style>
         </section>
     );
 }
