@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from '../context/AuthContext';
@@ -84,28 +83,7 @@ const S = {
     // Page Reset - Dark Mode Base
     page: { fontFamily: "'Inter', 'Segoe UI', sans-serif", margin: 0, padding: 0, color: "#F8FAFC", background: "#020617" },
 
-
     // NAV - Frosted Glass
-    nav: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", height: 80, background: "rgba(2, 6, 23, 0.7)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.05)", position: "sticky", top: 0, zIndex: 100 },
-    // ... other nav styles ...
-    navBookBtn: { background: "#10B981", color: "#020617", border: "none", borderRadius: 8, padding: "12px 24px", fontWeight: 700, fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "0.3s" },
-
-    // ADD THESE TWO NEW LINES:
-    navLoginBtn: { background: "#10B981", color: "#020617", border: "none", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", textDecoration: "none" },
-    navRegBtn: { background: "transparent", color: "#10B981", border: "1px solid #10B981", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", textDecoration: "none", marginLeft: "12px" },
-
-    // LOGOUT BUTTON
-    navLogoutBtn: {
-        background: "rgba(239, 68, 68, 0.1)", // Faint red background
-        color: "#F87171",                     // Soft red text
-        border: "1px solid rgba(239, 68, 68, 0.3)",
-        borderRadius: 8,
-        padding: "8px 16px",
-        fontWeight: 600,
-        fontSize: 13,
-        cursor: "pointer",
-        transition: "0.3s"
-    },
     nav: { display: "flex", alignItems: "center", justifyContent: "space-between", padding: "0 40px", height: 80, background: "rgba(2, 6, 23, 0.7)", backdropFilter: "blur(16px)", borderBottom: "1px solid rgba(255,255,255,0.05)", position: "sticky", top: 0, zIndex: 100 },
     logo: { display: "flex", alignItems: "center", gap: 12 },
     logoCircle: { width: 44, height: 44, borderRadius: 12, background: "linear-gradient(135deg, #10B981, #059669)", display: "flex", alignItems: "center", justifyContent: "center", color: "#020617", fontWeight: 900, fontSize: 10, textAlign: "center", lineHeight: 1.1, letterSpacing: 1 },
@@ -115,11 +93,15 @@ const S = {
     navPhone: { display: "flex", alignItems: "center", gap: 8, color: "#F8FAFC", fontWeight: 600, fontSize: 15 },
     navBookBtn: { background: "#10B981", color: "#020617", border: "none", borderRadius: 8, padding: "12px 24px", fontWeight: 700, fontSize: 14, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, transition: "0.3s" },
 
+    // Auth Buttons
+    navLoginBtn: { background: "#10B981", color: "#020617", border: "none", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", textDecoration: "none" },
+    navRegBtn: { background: "transparent", color: "#10B981", border: "1px solid #10B981", borderRadius: 8, padding: "10px 20px", fontWeight: 700, fontSize: 14, cursor: "pointer", textDecoration: "none", marginLeft: "12px" },
+    navLogoutBtn: { background: "rgba(239, 68, 68, 0.1)", color: "#F87171", border: "1px solid rgba(239, 68, 68, 0.3)", borderRadius: 8, padding: "8px 16px", fontWeight: 600, fontSize: 13, cursor: "pointer", transition: "0.3s" },
 
     // HERO - Immersive Full Height
     hero: { position: "relative", minHeight: "90vh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center", overflow: "hidden", padding: "0 20px" },
     heroBg: { position: "absolute", inset: 0, backgroundImage: "url(https://images.unsplash.com/photo-1619767886558-efdc259cde1a?w=1600&q=80)", backgroundSize: "cover", backgroundPosition: "center" },
-    heroOverlay: { position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(2,6,23,0.4), #020617)" }, // Fades smoothly into the page
+    heroOverlay: { position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(2,6,23,0.4), #020617)" },
     heroContent: { position: "relative", zIndex: 10, maxWidth: 800 },
     heroBadge: { display: "inline-flex", alignItems: "center", gap: 8, background: "rgba(16, 185, 129, 0.1)", border: "1px solid rgba(16, 185, 129, 0.3)", borderRadius: 100, padding: "8px 24px", color: "#10B981", fontSize: 13, fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", marginBottom: 24 },
     heroTitle: { fontSize: 72, fontWeight: 900, color: "#fff", margin: "0 0 16px", letterSpacing: -1, lineHeight: 1.1 },
@@ -127,6 +109,12 @@ const S = {
     heroBtns: { display: "flex", gap: 16, justifyContent: "center" },
     heroBtnPrimary: { padding: "16px 32px", borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, border: "none", background: "#10B981", color: "#020617" },
     heroBtnOutline: { padding: "16px 32px", borderRadius: 8, fontSize: 15, fontWeight: 700, cursor: "pointer", display: "flex", alignItems: "center", gap: 8, border: "1px solid rgba(255,255,255,0.2)", background: "rgba(255,255,255,0.05)", color: "#fff", backdropFilter: "blur(8px)" },
+
+    // Scroll Indicator
+    scrollIndicator: { position: "absolute", bottom: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8, opacity: 0.7, zIndex: 10 },
+    scrollIcon: { width: 24, height: 40, border: "2px solid #94A3B8", borderRadius: 12, display: "flex", justifyContent: "center", paddingTop: 6 },
+    scrollDot: { width: 4, height: 8, background: "#10B981", borderRadius: 2, animation: "scrollDotAnim 2s infinite" },
+    scrollText: { color: "#94A3B8", fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: 1 },
 
     // GLOBAL SECTION STYLES
     section: { padding: "100px 60px", position: "relative" },
@@ -136,14 +124,14 @@ const S = {
     h2: { fontSize: 44, fontWeight: 800, color: "#fff", margin: "0 0 16px", letterSpacing: -0.5 },
     subText: { color: "#94A3B8", fontSize: 18, maxWidth: 600, margin: "0 auto" },
 
-    // WHY CARDS - Minimalist Dark
+    // WHY CARDS
     whyGrid: { display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 24 },
     whyCard: { background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: 16, padding: 32, transition: "transform 0.3s" },
     whyIcon: { width: 56, height: 56, borderRadius: 12, background: "rgba(16, 185, 129, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, marginBottom: 24, color: "#10B981" },
     whyTitle: { fontSize: 18, fontWeight: 600, color: "#fff", margin: "0 0 12px" },
     whyDesc: { color: "#94A3B8", fontSize: 14, lineHeight: 1.7, margin: 0 },
 
-    // SERVICE CARDS - High Contrast
+    // SERVICE CARDS
     servGrid: { display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 32 },
     servCard: { background: "#0F172A", borderRadius: 16, overflow: "hidden", border: "1px solid #1E293B" },
     servImgWrap: { position: "relative", height: 240 },
@@ -156,7 +144,7 @@ const S = {
     servCheck: { color: "#10B981", fontSize: 16, fontWeight: 900 },
     servBtn: { width: "100%", background: "rgba(16, 185, 129, 0.1)", color: "#10B981", border: "1px solid rgba(16, 185, 129, 0.2)", borderRadius: 8, padding: "14px", fontSize: 14, fontWeight: 700, cursor: "pointer", marginTop: 24 },
 
-    // FLEET - Premium Segmented Controls
+    // FLEET
     fleetTabs: { display: "flex", gap: 8, background: "#0F172A", borderRadius: 12, padding: 8, width: "fit-content", margin: "0 auto 48px", border: "1px solid #1E293B" },
     fleetTab: { padding: "12px 32px", borderRadius: 8, fontSize: 13, fontWeight: 600, cursor: "pointer", color: "#64748B", border: "none", background: "transparent", letterSpacing: 1 },
     fleetTabActive: { padding: "12px 32px", borderRadius: 8, fontSize: 13, fontWeight: 700, cursor: "pointer", color: "#020617", border: "none", background: "#10B981", letterSpacing: 1 },
@@ -170,13 +158,13 @@ const S = {
     fleetMetaItem: { color: "#94A3B8", fontSize: 13, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 },
     fleetMetaLabel: { color: "#475569", fontSize: 10, textTransform: "uppercase", fontWeight: 700 },
 
-    // FOOTER CTA - Deep Emerald
+    // FOOTER CTA
     ctaBg: { background: "#064E3B", padding: "80px 60px", textAlign: "center", position: "relative", overflow: "hidden" },
     ctaTitle: { fontSize: 40, fontWeight: 800, color: "#fff", margin: "0 0 16px" },
     ctaDesc: { color: "#A7F3D0", fontSize: 18, margin: "0 auto 40px", maxWidth: 600 },
     ctaBtnPrimary: { padding: "16px 40px", borderRadius: 8, fontSize: 16, fontWeight: 700, cursor: "pointer", border: "none", background: "#fff", color: "#064E3B" },
 
-    // FOOTER - Pure Black
+    // FOOTER
     footer: { background: "#000", padding: "64px 60px 32px", color: "#64748B" },
     footerGrid: { display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1.5fr", gap: 64, marginBottom: 64 },
     footerTitle: { color: "#fff", fontSize: 14, fontWeight: 600, marginBottom: 24, textTransform: "uppercase", letterSpacing: 1 },
@@ -187,50 +175,50 @@ const S = {
     revealVisible: { opacity: 1, transform: "translateY(0)" },
 };
 
-
 // ─── CUSTOM HOOK FOR SCROLL ANIMATIONS ───────────────────────────────────────
 function useScrollReveal() {
     const ref = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
+        // We assign ref.current to a variable inside the effect so React 
+        // can safely clean it up later without throwing an exhaustive-deps warning.
+        const currentRef = ref.current;
+
         const observer = new IntersectionObserver(
             ([entry]) => {
-                // When the element enters the viewport, set it to visible
                 if (entry.isIntersecting) {
                     setIsVisible(true);
-                    // Optional: Stop observing once it has animated in
                     observer.unobserve(entry.target);
                 }
             },
             {
-                threshold: 0.1, // Trigger when 10% of the element is visible
-                rootMargin: "0px 0px -50px 0px" // Triggers slightly before it fully enters
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
             }
         );
 
-        if (ref.current) {
-            observer.observe(ref.current);
+        if (currentRef) {
+            observer.observe(currentRef);
         }
 
         return () => {
-            if (ref.current) observer.unobserve(ref.current);
+            if (currentRef) observer.unobserve(currentRef);
         };
     }, []);
 
     return { ref, isVisible };
 }
+
 // ─── COMPONENTS ──────────────────────────────────────────────────────────────
 
 function Navbar({ active, setActive }) {
-    // Grab the user data and logout function from our context
     const { user, logout } = useAuth();
     const navigate = useNavigate();
 
-    // Function to handle clicking the logout button
     const handleLogout = () => {
-        logout(); // Clears the local storage and user state
-        navigate('/login'); // Sends them back to the login screen
+        logout();
+        navigate('/login');
     };
 
     return (
@@ -263,9 +251,7 @@ function Navbar({ active, setActive }) {
 
                 <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.2)" }} />
 
-                {/* CONDITIONAL RENDERING STARTS HERE */}
                 {user ? (
-                    // IF USER IS LOGGED IN:
                     <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
                         <span style={{ color: '#10B981', fontWeight: 600, fontSize: 14 }}>
                             Welcome, {user.name}
@@ -275,17 +261,15 @@ function Navbar({ active, setActive }) {
                         </button>
                     </div>
                 ) : (
-                    // IF USER IS NOT LOGGED IN:
                     <div style={{ display: 'flex', gap: 16 }}>
                         <Link to="/login" style={S.navLoginBtn}>Login</Link>
                     </div>
                 )}
-                {/* CONDITIONAL RENDERING ENDS HERE */}
-
             </div>
         </nav>
     );
 }
+
 function Hero() {
     return (
         <section style={S.hero}>
@@ -304,7 +288,6 @@ function Hero() {
                 </div>
             </div>
 
-            {/* Bouncing Scroll Indicator */}
             <div style={S.scrollIndicator}>
                 <div style={S.scrollIcon}>
                     <div style={S.scrollDot} />
@@ -312,7 +295,6 @@ function Hero() {
                 <span style={S.scrollText}>Scroll Down</span>
             </div>
 
-            {/* Injecting keyframes for the scroll dot animation */}
             <style>
                 {`
                 @keyframes scrollDotAnim {
